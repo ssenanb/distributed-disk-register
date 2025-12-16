@@ -74,5 +74,10 @@ __5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
 __6) Crash Senaryoları ve Recovery__
 
 
+__Örnek ile Kod İşleyişini Anlama__
+
+<img src="https://github.com/ssenanb/RTOS-Based-Multi-Sensor-Environmental-Analyzer/blob/main/configuration.png" alt="Configuration" width="500"/>
+
+
 
 
