@@ -15,7 +15,7 @@ __2) Diskte Mesaj Saklama (Buffered/Unbuffered IO Yaklaşımı)__
 
 __3) gRPC Mesaj Modeli (Protobuf Nesnesi)__
 
-Lider ve üyelerin birbirleriyle iletişim kurarken kullandıkları veri paketlerinin standartlaştırılması ve Java sınıflarının Protobuf(Protocol Buffers) üzerinden otomatik üretilmesi sağlanır. İletişim __family.proto__ dosyasında tanımlanan yapılandırılmış nesneler üzerinden yürütülür. 
+Lider ve üyelerin birbirleriyle iletişim kurarken kullandıkları veri paketlerinin standartlaştırılması ve Java sınıflarının Protobuf (Protocol Buffers) üzerinden otomatik üretilmesi sağlanır. İletişim __family.proto__ dosyasında tanımlanan yapılandırılmış nesneler üzerinden yürütülür. 
 
 __StoredMessage:__ Diskte saklanacak veriyi temsil eden ve içerisinde ID ve Text alanlarını barındıran yapıdır. Veri bütünlüğünü sağlamak için tek bir paket halinde kapsüllenir.
 
