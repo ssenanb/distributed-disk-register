@@ -90,7 +90,7 @@ TOLERANCE değeri 2 olduğu için SET mesajı ile gönderilen mesaj hem lidere h
 
 Bu işlem sonunda kaydedilen mesaj dosyaları ve içerikleri aşağıda gösterilmiştir:
 
-<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files" alt="Mesaj Dosyaları" width="900"/>
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files" alt="Mesaj Dosyaları" width="500"/>
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files_content" alt="Mesaj Dosya İçeriği" width="900"/>
 
