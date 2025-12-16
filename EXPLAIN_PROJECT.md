@@ -3,7 +3,7 @@ Bu proje; birden fazla sunucunun bir küme halinde çalıştığı bir hibrit il
 
 __1) TCP Server İstemciden Gelen Mesajları Pars Etme__
 
-__2)Diskte Mesaj Saklama (Buffered/Unbuffered IO Yaklaşımı)__
+__2) Diskte Mesaj Saklama (Buffered/Unbuffered IO Yaklaşımı)__
 
 __3) gRPC Mesaj Modeli (Protobuf Nesnesi)__
 
