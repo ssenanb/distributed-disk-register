@@ -19,13 +19,51 @@ __3) gRPC Mesaj Modeli (Protobuf Nesnesi)__
 
 Lider ve üyelerin birbirleriyle iletişim kurarken kullandıkları veri paketlerinin standartlaştırılması ve Java sınıflarının Protobuf (Protocol Buffers) üzerinden otomatik üretilmesi sağlanır. İletişim __family.proto__ dosyasında tanımlanan yapılandırılmış nesneler üzerinden yürütülür. 
 
-__StoredMessage:__ Diskte saklanacak veriyi temsil eden ve içerisinde ID ve Text alanlarını barındıran yapıdır. Veri bütünlüğünü sağlamak için tek bir paket halinde kapsüllenir.
+__StoredMessage:__ Diskte saklanacak veriyi temsil eden ve içerisinde ID ve text alanlarını barındıran yapıdır. Veri bütünlüğünü sağlamak için tek bir paket halinde kapsüllenir.
 
 __Store (RPC):__ Liderin gönderdiği StoredMessage nesnesini üye düğümün diskine kaydetmesini sağlayan çağrı metodudur.
 
 __Retrieve (RPC):__ Belirtilen ID'ye sahip verinin üye düğümden okunup Lidere geri döndürülmesini sağlayan sorgu metodudur.
 
 __4) Tolerance=1 ve 2 için Dağıtık Kayıt__
+
+Bu aşamada sisteme yedekleme mekanizması eklenerek veriye erişilebilirlik sağlanmıştır. Sistem __tolerance.conf__ dosyasındaki TOLERANCE değerine göre dinamik olarak şekillenir:
+
+* TOLERANCE=1: Veri, lider dışında 1 yedek üyede tutulur. Toplamda 2 kayıt yapılır.
+
+* TOLERANCE=2: Veri, lider dışında 2 yedek üyede tutulur. Toplamda 3 kayıt yapılır.
+
+Sistem dış dünya ile iç dünya arasında farklı diller konuşur:
+
+__İstemci ↔ Lider:__ Basit ve okunabilir text tabanlı iletişim.
+
+__Lider ↔ Üyeler:__ Yüksek performanslı .protobuf nesneleri.
+
+Protobuf kullanımı ağ trafiğini minimize eder ve serileştirme hızını artırarak düğümler arası iletişimi optimize eder.
+
+__SET Akışı (Veri Kaydetme)__
+
+Lider bir SET isteği alır ve protobuf formatına dönüştürür sonrasında şu adımları gerçekleştirir:
+
+1) Mesajı kendi diskine yazar ve bellek haritasına ekler.
+
+2) Aktif üyeler arasından TOLERANCE sayısı kadar üye seçer.
+
+3) Seçilen üyelere gRPC üzerinden __Store()__ isteği gönderir (Dönüştürülen nesne gönderilir).
+
+4) Tüm yedeklerden başarılı yanıt gelirse istemciye __OK__ döner.
+
+5) Herhangi bir yedek başarısız olursa istemciye hata döner __(NOT_FOUND)__.
+
+__GET Akışı (Veri Okuma)__
+
+Lider bir GET isteği aldığında şu adımları gerçekleştirir:
+
+1) Lider veriyi önce kendi diskinden okumaya çalışır.
+
+2) Eğer veri liderde yoksa liste üzerinden verinin kopyalandığı üyeleri belirler.
+
+3) Listedeki üyelere sırayla __Retrieve()__ isteği atar. İlk başarılı yanıt istemciye iletilir.
 
 __5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
 
