@@ -23,6 +23,14 @@ __3) gRPC Mesaj Modeli (Protobuf Nesnesi)__
 
 Lider ve üyelerin birbirleriyle iletişim kurarken kullandıkları veri paketlerinin standartlaştırılması ve Java sınıflarının Protobuf (Protocol Buffers) üzerinden otomatik üretilmesi sağlanır. İletişim __family.proto__ dosyasında tanımlanan yapılandırılmış nesneler üzerinden yürütülür. 
 
+Sistem dış dünya ile iç dünya arasında farklı diller konuşur:
+
+__İstemci ↔ Lider:__ Basit ve okunabilir text tabanlı iletişim.
+
+__Lider ↔ Üyeler:__ Yüksek performanslı .protobuf nesneleri.
+
+Protobuf kullanımı ağ trafiğini minimize eder ve serileştirme hızını artırarak düğümler arası iletişimi optimize eder.
+
 __StoredMessage:__ Diskte saklanacak veriyi temsil eden ve içerisinde ID ve text alanlarını barındıran yapıdır. Veri bütünlüğünü sağlamak için tek bir paket halinde kapsüllenir.
 
 __Store (RPC):__ Liderin gönderdiği StoredMessage nesnesini üye düğümün diskine kaydetmesini sağlayan çağrı metodudur.
@@ -36,14 +44,6 @@ Bu aşamada sisteme yedekleme mekanizması eklenerek veriye erişilebilirlik sa�
 * TOLERANCE=1: Veri, lider dışında 1 yedek üyede tutulur. Toplamda 2 kayıt yapılır.
 
 * TOLERANCE=2: Veri, lider dışında 2 yedek üyede tutulur. Toplamda 3 kayıt yapılır.
-
-Sistem dış dünya ile iç dünya arasında farklı diller konuşur:
-
-__İstemci ↔ Lider:__ Basit ve okunabilir text tabanlı iletişim.
-
-__Lider ↔ Üyeler:__ Yüksek performanslı .protobuf nesneleri.
-
-Protobuf kullanımı ağ trafiğini minimize eder ve serileştirme hızını artırarak düğümler arası iletişimi optimize eder.
 
 __SET Akışı (Veri Kaydetme)__
 
@@ -73,22 +73,24 @@ __5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
 
 __6) Crash Senaryoları ve Recovery__
 
-
 __Örnek ile Kod İşleyişini Anlama__
 
 TOLERANCE değeri 2 olarak ayarlandı ve biri lider diğer dördü üye olacak şekilde sistem başlatıldı. Lider 5555 portundan başlatıldı ve her yeni üye eklendiğinde üylerin port numarası 5556, 5557, 5558, 5559 olacak şekilde oluşturuldu.
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/leader_and_members" alt="Lider ve Üyeler" width="900"/>
 
-Mesaj gönderimi için 6666 portundan GET ve SET komutları gönderildi. Her SET isteğinde belrtilen ID ve mesaj kaydedildi, diske yazıldı. Başarılı olması durumunda OK mesajı döndürüldü. GET isteği geldiğinde kaydedilen ID'nin mesajı konsola bastırıldı. Bu örnekte gönderilen komutlar aşağıdaki gibidir:
+Mesaj gönderimi için 6666 portundan GET ve SET komutları gönderildi. Her SET isteğinde belrtilen ID ve mesaj kaydedildi, diske yazıldı. Başarılı olması durumunda OK döndürüldü. GET isteği geldiğinde kaydedilen ID'nin mesajı konsola bastırıldı. Yanlış ve eksik komut gönderiminde NOT_FOUND döndürülür. Bu örnekte gönderilen komutlar şu şekildedir:
+
+__SET 100 hello_world__
+__GET 100__
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/commands_send" alt="Komut Gönderimi" width="900"/>
 
-TOLERANCE değeri 2 olduğu için SET mesajı ile gönderilen mesaj hem lidere hemde 2 üyeye kaydedildi. Bu örnek için lider olan 5555 portuna, üye_1 olan 5556 portuna ve üye_2 olan 5557 portuna mesaj kaydedildi.
+TOLERANCE değeri 2 olduğu için SET mesajı ile gönderilen mesaj hem lidere hem de 2 üyeye kaydedildi. Bu örnek için lider olan 5555 portuna, üye_1 olan 5556 portuna ve üye_2 olan 5557 portuna mesaj kaydedildi. İstemci ve lider arasında text tabanlı bir iletişim kurulurken üyeler ve lider arasında protobuf neseneleri ile iletişim kurulmuştur.
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/gRPC_send" alt="gRPC Gönderimi" width="900"/>
 
-Bu işlem sonunda kaydedilen mesaj dosyaları ve içerikleri aşağıda gösterilmiştir:
+Bu işlem sonunda lider ve her üye mesajı Buffered IO ile diske yazmıştır. Kaydedilen ID'nin adı ile .msg dosyaları oluşmuştur. Aşağıda dosya biçimi ve içerikleri gösterilmiştir:
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files" alt="Mesaj Dosyaları" width="500"/>
 
