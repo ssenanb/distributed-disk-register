@@ -80,6 +80,31 @@ TOLERANCE değeri 2 olarak ayarlandı ve biri lider diğer dördü üye olacak �
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/leader_and_members" alt="Lider ve Üyeler" width="900"/>
 
+Mesaj gönderimi için 6666 portundan GET ve SET komutları gönderildi. Her SET isteğinde belrtilen ID ve mesaj kaydedildi, diske yazıldı. Başarılı olması durumunda OK mesajı döndürüldü. GET isteği geldiğinde kaydedilen ID'nin mesajı konsola bastırıldı. Bu örnekte gönderilen komutlar aşağıdaki gibidir:
+
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/commands_send" alt="Komut Gönderimi" width="900"/>
+
+TOLERANCE değeri 2 olduğu için SET mesajı ile gönderilen mesaj hem lidere hemde 2 üyeye kaydedildi. Bu örnek için lider olan 5555 portuna, üye_1 olan 5556 portuna ve üye_2 olan 5557 portuna mesaj kaydedildi.
+
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/gRPC_send" alt="gRPC Gönderimi" width="900"/>
+
+Bu işlem sonunda kaydedilen mesaj dosyaları ve içerikleri aşağıda gösterilmiştir:
+
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files" alt="Mesaj Dosyaları" width="900"/>
+
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files_content" alt="Mesaj Dosya İçeriği" width="900"/>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
