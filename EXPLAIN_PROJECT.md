@@ -105,12 +105,14 @@ Burada sistemin dayanıklılığı test edilmiştir. Amaç, verilerin bulunduğu
 
 __Test Senaryosu 1:__
 
-1'i lider olmak üzere 4 üye ve Tolerance değeri 2 olarak sistem başlatıldı. İstemci aracılığıyla SET 500 TestVerisi komutu gönderilerek verinin Lider haricinde iki üyeye daha (Port 5556 ve 5557) kopyalanması sağlandı.
+1'i lider olmak üzere 4 üye ve Tolerance değeri 2 olarak sistem başlatıldı. 
+İstemci aracılığıyla SET 500 TestVerisi komutu gönderilerek verinin Lider haricinde iki üyeye daha (Port 5556 ve 5557) kopyalanması sağlandı.
 
 
 ![test aşamaları](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu.png)
 
 Üye 2(port 5556) manuel olarak kapatıldı. Lider üye 2'yi listeden çıkardı. 
+
 İstemci GET 500 isteği gönderdiğinde liderin hayatta kalan diğer üyeden veriyi kesintisiz olarak getirdiği doğrulandı. 
 
 ![veri kaybı testi](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.png)
