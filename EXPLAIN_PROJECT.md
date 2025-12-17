@@ -99,7 +99,7 @@ __6) Crash Senaryoları ve Recovery__
 
 Burada sistemin dayanıklılığı test edilmiştir. Amaç, verilerin bulunduğu düğümlerden biri veya birkaçı çöktüğünde (crash), lider düğümün bu durumu fark edip kesinti yaşamadan veriyi hayatta kalan diğer düğümlerden getirebildiğini kanıtlamaktır.
 
-1) Lider, verinin hangi düğümlerde olduğunu bilir (messageLocations Map).
+1) Lider, verinin hangi düğümlerde olduğunu bilir.
 2) GET isteği geldiğinde listedeki ilk üyeye bağlanmayı dener.
 3) Eğer üye çökmüşse, lider hatayı yakalar (catch) ve kullanıcıya hissettirmeden listedeki bir sonraki üyeye geçer.
 
