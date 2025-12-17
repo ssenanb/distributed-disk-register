@@ -101,11 +101,11 @@ __Test Senaryoları__
 
 Test için öncelikle TOLERANCE değeri 2 olarak seçildi. Toplamda 5 üye olacak şekilde 1 lider 4 üye ile test edildi. Lider 5555 portunda kullanılarak eklenen 4 üye sırasıyla 5556, 5557, 5558, 5559 portlarında oluşturuldu. Ardından sisteme 1000 tane SET isteği gönderildi. 2 set üye için 500-500 şeklinde eşit olarak paylaştırıldı ve her mesaj 2 üyeye kaydedildi.
 
-<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/tolerance_2.png" alt="Lider ve Üyeler" width="900"/>
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/tolerance_2.png" alt="Lider ve Üyeler" width="600"/>
 
 Bir diğer test için TOLERANCE değeri 3 olarak belirlendi. Toplamda 7 üye olacak şekilde 1 lider 6 üye ile test edildi. Lideri tekrardan 5555 portunda başlattık eklenen üyeler ise sırasıyla 5556, 5557, 5558, 5559, 5560, 5561 portlarında oluşturuldu. Ardından gönderilen 1000 SET isteği sonucunda 3 set üye için 499-500-501 şeklinde yaklaşık değerlerde paylaştırıldı ve her mesaj 3 üyeye kaydedildi.
 
-<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/tolerance_3.png" alt="Lider ve Üyeler" width="900"/>
+<img src="https://github.com/ssenanb/distributed-disk-register/blob/main/tolerance_3.png" alt="Lider ve Üyeler" width="600"/>
 
 __6) Crash Senaryoları ve Recovery__
 
