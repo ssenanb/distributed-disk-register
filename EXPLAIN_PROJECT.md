@@ -141,7 +141,7 @@ SET 4501 TestSenaryosu2 komutu ile veri sisteme gönderildi. Lider ve 3 farklı 
 
 ![test senaryosu 2.1](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.1.png)
 
-Daha sonra 2. üye(Port 5557)de kapatılarak GET 4051 komutu gönderildi ve Liderin çöken üyeleri atlayıp, istemciye herhangi bir kesinti veya hata yansıtmadan doğrudan hayatta kalan son üyeden (Port 5558) veriyi çekip getirdiği gözlemlendi.
+Daha sonra 2. üye (Port 5557) de kapatılarak GET 4051 komutu gönderildi ve Liderin çöken üyeleri atlayıp, istemciye herhangi bir kesinti veya hata yansıtmadan doğrudan hayatta kalan son üyeden (Port 5558) veriyi çekip getirdiği gözlemlendi.
 
 
 ![test senaryosu 2.2](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.2.png)
