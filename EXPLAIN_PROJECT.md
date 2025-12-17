@@ -121,13 +121,20 @@ __Test Senaryosu 1:__
 Sistemin dayanıklılığını artırmak amacıyla üye sayısı 6’ya(1 lider + 5 üye), Tolerance değeri ise 3’e çıkarıldı. 
 
 
-SET 4501 komutu ile veri sisteme gönderildi ve Lider haricinde 3 farklı üyeye(5556, 5557 ve 5558) dağıtıldı.
+SET 4501 TestSenaryosu2 komutu ile veri sisteme gönderildi. Lider ve 3 farklı üyeye (5556, 5557 ve 5558) dağıtıldı.
 
 
 ![tolerans 3](https://github.com/ssenanb/distributed-disk-register/blob/main/tolerans3.png)
 ![test2](https://github.com/ssenanb/distributed-disk-register/blob/main/test2.png)
 
+Önce 1 üye (port 5556) kapatılarak GET 4501 komutu gönderildi. 
 
+[!test senaryosu 2.1](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.1.png)
+
+Daha sonra 2. üye de kapatılarak GET 4051 komutu gönderildi ve Liderin çöken üyeleri atlayıp, istemciye herhangi bir kesinti veya hata yansıtmadan doğrudan hayatta kalan son üyeden (Port 5558) veriyi çekip getirdiği gözlemlendi.
+
+
+![test senaryosu 2.2](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.2.png)
 
 
 
