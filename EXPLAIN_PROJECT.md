@@ -13,11 +13,13 @@ Bu kod, sistemin "Lider" düğümü üzerinde çalışarak istemciden gelen tale
 
 __2) Diskte Mesaj Saklama (Buffered/Unbuffered IO Yaklaşımı)__  
 
-Bu aşamada mesajların geçici bellek yerine kalıcı olarak disk üzerinde saklanması amaçlanmıştır. Sistem, SET ve GET komutları aracılığıyla her mesajı kendi ID'siyle ayrı bir dosya olarak oluşturmakta ve okumaktadır.
+Bu aşamada mesajların disk üzerinde kalıcı olarak saklanması sağlanmıştır. Sistem, SET ve GET komutları ile her mesajı ilgili porta özel oluşturulan klasörlerde kendi IDleri ile isimlendirilmiş dosyalar halinde saklamaktadır. Disk I/O performansını test etmek amacıyla iki farklı yaklaşım denenmiştir.  
 
-Mesajların diske yazılması ve diskten okunması sürecinde Buffered IO yaklaşımı kullanılmıştır. BufferedWriter ve BufferedReader sınıfları kullanılarak verileri önce bellek üzerindeki bir tamponda biriktirip toplu halde diske yazdığı için disk işlem saysının minimize edilmesi hedeflenmiştir. Bu yaklaşım sık ve küçük veri işlemlerinde disk I/O maliyetini azaltarak performans artışı sağlamaktadır. 
+_Buffered IO Yaklaşımıı:_ BufferedWriter ve BufferedReader sınıfları kullanılarak verileri önce bellek üzerindeki bir tamponda biriktirir sonrasında toplu halde diske yazar. Bu sayede sistem çağrısı sayısı minimize edilmiştir. 
 
-Unbuffered yaklaşımda ise FileOutputStream ve FileInputStream kullanılarak veriler byte tabanlı olarak doğrudan işletim sistemine iletilmektedir. Bu yöntem düşük seviyeli kontrol gerektiren durumlar için uygundur ve sık yapılan okuma, yazma işlemlerinde buffered yaklaşıma kıyasla daha fazla sistem çağrısına neden olmaktadır. Disk erişim sayısını azaltarak performans artışı sağlaması nedeniyle projede buffered IO yaklaşımı tercih edilmiştir. 
+_Unbuffered Yaklaşımı:_ FileOutputStream ve FileInputStream kullanılarak veriler byte tabanlı olarak doğrudan işletim sistemine iletilmektedir. Bu yöntem düşük seviyeli kontrol gerektiren durumlar için uygundur ve sık yapılan okuma, yazma işlemlerinde buffered yaklaşıma kıyasla daha fazla sistem çağrısına neden olmaktadır.
+
+Proje kapsamında 1000 ardışık SET isteği ile yapılan denemede iki yöntem arasında belirgin bir hız farkı gözlemlenemedi. Ancak disk erişim sayısını azaltarak performans artışı sağlaması nedeniyle projede Buffered IO yaklaşımı tercih edilmiştir. 
 
 __3) gRPC Mesaj Modeli (Protobuf Nesnesi)__
 
