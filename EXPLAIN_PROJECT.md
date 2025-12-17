@@ -78,6 +78,7 @@ TOLERANCE değeri 2 olarak ayarlandı ve biri lider diğer dördü üye olacak �
 Mesaj gönderimi için 6666 portundan GET ve SET komutları gönderildi. Her SET isteğinde belrtilen ID ve mesaj kaydedildi, diske yazıldı. Başarılı olması durumunda OK döndürüldü. GET isteği geldiğinde kaydedilen ID'nin mesajı konsola bastırıldı. Yanlış ve eksik komut gönderiminde NOT_FOUND döndürülür. Bu örnekte gönderilen komutlar şu şekildedir:
 
 __SET 100 hello_world__
+
 __GET 100__
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/commands_send" alt="Komut Gönderimi" width="900"/>
