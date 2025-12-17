@@ -97,6 +97,16 @@ __5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
 
 __6) Crash Senaryoları ve Recovery__
 
+Burada sistemin dayanıklılığı test edilmiştir. Amaç, verilerin bulunduğu düğümlerden biri veya birkaçı çöktüğünde (crash), lider düğümün bu durumu fark edip kesinti yaşamadan veriyi hayatta kalan diğer düğümlerden getirebildiğini kanıtlamaktır.
+
+1- Lider, verinin hangi düğümlerde olduğunu bilir (messageLocations Map).
+2- GET isteği geldiğinde listedeki ilk üyeye bağlanmayı dener.
+3- Eğer üye çökmüşse, lider hatayı yakalar (catch), loglar ve kullanıcıya hissettirmeden listedeki bir sonraki üyeye geçer.
+
+__Test Senaryosu 1:__
+
+1'i lider olmak üzere 4 üye ve Tolerance değeri 2 olarak sistem başlatıldı. İstemci aracılığıyla SET 500 TestVerisi komutu gönderilerek verinin Lider haricinde iki üyeye daha (Örn: Port 5557 ve 5558) kopyalanması sağlandı.
+
 
 
 
