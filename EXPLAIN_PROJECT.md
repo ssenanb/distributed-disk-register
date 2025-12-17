@@ -95,6 +95,16 @@ Bu işlem sonunda lider ve her üye mesajı Buffered IO ile diske yazmıştır. 
 
 __5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
 
+Bu aşamada sistemin artan veri yükünü üyeler arasında adil bir şekilde paylaştırılması sağlanmıştır.  Sistem __tolerance.conf__ dosyasındaki TOLERANCE değerine göre dinamik çalışmaya devam eder ancak önceki aşamadan farklı olarak SET edilen mesajlar artık tüm üyelere kopyalanmak yerine TOLERANCE sayısı kadar üyeye eşit bir şekilde paylaştırılır. 
+
+__Test Senaryoları__
+
+Test için öncelikle TOLERANCE değeri 2 olarak seçildi. Toplamda 5 üye olacak şekilde 1 lider 4 üye ile test edildi. Lider 5555 portunda kullanılarak eklenen 4 üye sırasıyla 5556, 5557, 5558, 5559 portlarında oluşturuldu. Ardından sisteme 1000 tane SET isteği gönderildi. 2 set üye için 500-500 şeklinde eşit olarak paylaştırıldı ve her mesaj 2 üyeye kaydedildi.
+
+
+Bir diğer test için TOLERANCE değeri 3 olarak belirlendi. Toplamda 7 üye olacak şekilde 1 lider 6 üye ile test edildi. Lideri tekrardan 5555 portunda başlattık eklenen üyeler ise sırasıyla 5556, 5557, 5558, 5559, 5560, 5561 portlarında oluşturuldu. Ardından gönderilen 1000 SET isteği sonucunda 3 set üye için 499-500-501 şeklinde yaklaşık değerlerde paylaştırıldı ve her mesaj 3 üyeye kaydedildi.
+
+
 __6) Crash Senaryoları ve Recovery__
 
 Burada sistemin dayanıklılığı test edilmiştir. Amaç, verilerin bulunduğu düğümlerden biri veya birkaçı çöktüğünde (crash), lider düğümün bu durumu fark edip kesinti yaşamadan veriyi hayatta kalan diğer düğümlerden getirebildiğini kanıtlamaktır.
