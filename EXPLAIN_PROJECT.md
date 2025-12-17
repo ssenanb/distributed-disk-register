@@ -118,6 +118,17 @@ __Test Senaryosu 1:__
 ![veri kaybı testi](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.png)
 
 
+Sistemin dayanıklılığını artırmak amacıyla üye sayısı 6’ya(1 lider + 5 üye), Tolerance değeri ise 3’e çıkarıldı. 
+
+
+SET 4501 komutu ile veri sisteme gönderildi ve Lider haricinde 3 farklı üyeye(5556, 5557 ve 5558) dağıtıldı.
+
+
+![tolerans 3](github.com/ssenanb/distributed-disk-register/blob/main/tolerans3.png)
+![test2](https://github.com/ssenanb/distributed-disk-register/blob/main/test2.png)
+
+
+
 
 
 
