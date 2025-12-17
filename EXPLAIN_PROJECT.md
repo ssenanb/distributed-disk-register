@@ -109,7 +109,6 @@ __Test Senaryosu 1:__
 
 
 
-![test aşamaları] https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu.png
 
 
 
