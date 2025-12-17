@@ -15,9 +15,9 @@ __2) Diskte Mesaj Saklama (Buffered/Unbuffered IO Yaklaşımı)__
 
 Bu aşamada mesajların disk üzerinde kalıcı olarak saklanması sağlanmıştır. Sistem, SET ve GET komutları ile her mesajı ilgili porta özel oluşturulan klasörlerde kendi IDleri ile isimlendirilmiş dosyalar halinde saklamaktadır. Disk I/O performansını test etmek amacıyla iki farklı yaklaşım denenmiştir.  
 
-_Buffered IO Yaklaşımıı:_ BufferedWriter ve BufferedReader sınıfları kullanılarak verileri önce bellek üzerindeki bir tamponda biriktirir sonrasında toplu halde diske yazar. Bu sayede sistem çağrısı sayısı minimize edilmiştir. 
+_Buffered IO Yaklaşımı:_ BufferedWriter ve BufferedReader sınıfları kullanılarak verileri önce bellek üzerindeki bir tamponda biriktirir sonrasında toplu halde diske yazar. Bu sayede sistem çağrısı sayısı minimize edilmiştir. 
 
-_Unbuffered Yaklaşımı:_ FileOutputStream ve FileInputStream kullanılarak veriler byte tabanlı olarak doğrudan işletim sistemine iletilmektedir. Bu yöntem düşük seviyeli kontrol gerektiren durumlar için uygundur ve sık yapılan okuma, yazma işlemlerinde buffered yaklaşıma kıyasla daha fazla sistem çağrısına neden olmaktadır.
+_Unbuffered IO Yaklaşımı:_ FileOutputStream ve FileInputStream kullanılarak veriler byte tabanlı olarak doğrudan işletim sistemine iletilmektedir. Bu yöntem düşük seviyeli kontrol gerektiren durumlar için uygundur ve sık yapılan okuma, yazma işlemlerinde buffered yaklaşıma kıyasla daha fazla sistem çağrısına neden olmaktadır.
 
 Proje kapsamında 1000 ardışık SET isteği ile yapılan denemede iki yöntem arasında belirgin bir hız farkı gözlemlenemedi. Ancak disk erişim sayısını azaltarak performans artışı sağlaması nedeniyle projede Buffered IO yaklaşımı tercih edilmiştir. 
 
