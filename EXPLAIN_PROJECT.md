@@ -39,7 +39,7 @@ __Retrieve (RPC):__ Belirtilen ID'ye sahip verinin üye düğümden okunup Lider
 
 __4) Tolerance=1 ve 2 için Dağıtık Kayıt__
 
-Bu aşamada sisteme yedekleme mekanizması eklenerek veriye erişilebilirlik sağlanmıştır. Sistem __tolerance.conf__ dosyasındaki TOLERANCE değerine göre dinamik olarak şekillenir:
+Bu aşamada sisteme yedekleme mekanizması eklenerek veriye erişilebilirlik sağlanmıştır. Sistem __tolerance.conf__ dosyasındaki TOLERANCE değerine göre dinamik olarak şekillenir. Ayrıca lider "mesaj id hangi üyelerde var" bilgisini __Map<Integer, List<MemberId>>__ tipinde bir map'te tutar.
 
 * TOLERANCE=1: Veri, lider dışında 1 yedek üyede tutulur. Toplamda 2 kayıt yapılır.
 
@@ -69,10 +69,6 @@ Lider bir GET isteği aldığında şu adımları gerçekleştirir:
 
 3) Listedeki üyelere sırayla __Retrieve()__ isteği atar. İlk başarılı yanıt istemciye iletilir.
 
-__5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
-
-__6) Crash Senaryoları ve Recovery__
-
 __Örnek ile Kod İşleyişini Anlama__
 
 TOLERANCE değeri 2 olarak ayarlandı ve biri lider diğer dördü üye olacak şekilde sistem başlatıldı. Lider 5555 portundan başlatıldı ve her yeni üye eklendiğinde üylerin port numarası 5556, 5557, 5558, 5559 olacak şekilde oluşturuldu.
@@ -95,6 +91,12 @@ Bu işlem sonunda lider ve her üye mesajı Buffered IO ile diske yazmıştır. 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files" alt="Mesaj Dosyaları" width="500"/>
 
 <img src="https://github.com/ssenanb/distributed-disk-register/blob/main/message_files_content" alt="Mesaj Dosya İçeriği" width="900"/>
+
+__5) Hata Toleransı n (Genel Hâl) ve Load Balancing__
+
+__6) Crash Senaryoları ve Recovery__
+
+
 
 
 
