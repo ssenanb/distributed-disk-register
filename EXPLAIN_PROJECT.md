@@ -99,9 +99,9 @@ __6) Crash Senaryoları ve Recovery__
 
 Burada sistemin dayanıklılığı test edilmiştir. Amaç, verilerin bulunduğu düğümlerden biri veya birkaçı çöktüğünde (crash), lider düğümün bu durumu fark edip kesinti yaşamadan veriyi hayatta kalan diğer düğümlerden getirebildiğini kanıtlamaktır.
 
-1- Lider, verinin hangi düğümlerde olduğunu bilir (messageLocations Map).
-2- GET isteği geldiğinde listedeki ilk üyeye bağlanmayı dener.
-3- Eğer üye çökmüşse, lider hatayı yakalar (catch), loglar ve kullanıcıya hissettirmeden listedeki bir sonraki üyeye geçer.
+1) Lider, verinin hangi düğümlerde olduğunu bilir (messageLocations Map).
+2) GET isteği geldiğinde listedeki ilk üyeye bağlanmayı dener.
+3) Eğer üye çökmüşse, lider hatayı yakalar (catch) ve kullanıcıya hissettirmeden listedeki bir sonraki üyeye geçer.
 
 __Test Senaryosu 1:__
 
@@ -136,6 +136,8 @@ Daha sonra 2. üye de kapatılarak GET 4051 komutu gönderildi ve Liderin çöke
 
 ![test senaryosu 2.2](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.2.png)
 
+
+Bu testlerle beraber sistemin sadece ideal koşullarda değil, beklenmedik sunucu kapanmaları (crash) gibi kriz anlarında da kararlı bir yapıda çalıştığı kanıtlanmıştır.
 
 
 
