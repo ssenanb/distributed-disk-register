@@ -113,6 +113,7 @@ __Test Senaryosu 1:__
 Üye 2(port 5556) manuel olarak kapatıldı. Lider üye 2'yi listeden çıkardı. 
 İstemci GET 500 isteği gönderdiğinde liderin hayatta kalan diğer üyeden veriyi kesintisiz olarak getirdiği doğrulandı. 
 
+![veri kaybı testi](https://github.com/ssenanb/distributed-disk-register/blob/main/testsenaryosu2.png)
 
 
 
